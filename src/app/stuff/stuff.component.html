@@ -1,0 +1,37 @@
+<h1>Available Stuff</h1>
+
+<button mat-raised-button routerLink={{newRouter}}>New Stuff</button>
+<button mat-raised-button (click)="removeSelected()">Remove Selected</button>
+
+<mat-form-field>
+    <mat-label>Filter</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="type here" #input>
+</mat-form-field>
+
+<table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+    <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Name</th>
+        <td mat-cell *matCellDef="let stuff"> {{stuff.name}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="manufacturer">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Manufacturer </th>
+        <td mat-cell *matCellDef="let stuff"> {{stuff.manufacturer}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="model">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Model </th>
+        <td mat-cell *matCellDef="let stuff"> {{stuff.model}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="description">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Description </th>
+        <td mat-cell *matCellDef="let stuff"> {{stuff.description}} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="selection.toggle(row)" [ngClass]="{hovered: row.hovered, highlighted: selection.isSelected(row)}" (mouseover)="row.hovered = true" (mouseout)="row.hovered = false">
+    </tr>
+
+</table>
+<mat-paginator [length]="resultsLength" [pageSizeOptions]="[5, 10, 20, resultsLength]"></mat-paginator>

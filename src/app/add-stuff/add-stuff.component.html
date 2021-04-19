@@ -1,0 +1,13 @@
+<h1>Add new stuff</h1>
+
+<form #stuff="ngForm" (ngSubmit)="newStuff(stuff.value)">
+    <input type="text" name="name" placeholder="name" ngModel>
+    <br />
+    <input type="text" name="manufacturer" placeholder="manufacturer" ngModel>
+    <br />
+    <input type="text" name="model" placeholder="model" ngModel>
+    <br />
+    <input type="text" name="description" placeholder="description" ngModel>
+    <br />
+    <input type="submit" value="Create">
+</form>
